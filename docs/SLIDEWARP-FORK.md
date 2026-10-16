@@ -71,14 +71,18 @@ PowerPoint session:
 - The new Python harness's three tests and PowerShell syntax checks passed.
 - The first full workspace run stopped with seven loopback-socket permission
   errors and two temporary-file access errors in the desktop test binary. A run
-  with local socket access and a checkout-local temporary directory, and the WASM
-  checks, are still pending. Do not treat the full workspace/CI as passed.
-- Compatibility **did not pass**: saving introduces inherited text styles and
-  emits malformed modern-comment XML. See the
+  with local socket access and a checkout-local temporary directory completed:
+  **1,676 passed, 0 failed, 6 ignored**. WASM checks passed for **23 crates**.
+  The strict Clippy baseline failure remains; the whole CI is not green.
+- Compatibility **did not pass**: actual PowerPoint rejects saved documents
+  because of malformed modern-comment XML. Diagnostic copies that correct only
+  the namespace open, but still reveal layout loss on the private deck. See the
   [measurements and reproductions](PPTX-COMPATIBILITY-2026-10-16.md).
 - A private 166-slide deck rendered identically before/after saving within
-  DeckCraft, but also reproduced the comment XML defect. PowerPoint reference
-  comparison awaits the user's session closure. Navigation work has not begun.
+  DeckCraft. Actual PowerPoint comparison found pixel changes on 128/166 slides
+  in the namespace-corrected diagnostic; its own save/reopen control was identical
+  on 166/166. The user's session was closed before the reference check. All source
+  hashes were preserved; navigation work has not begun.
 
 ## Revision history
 
@@ -86,3 +90,4 @@ PowerPoint session:
 |---|---|
 | 2026-10-16 | Isolated fork and compatibility-first workflow established. |
 | 2026-10-16 | Authored and private-copy compatibility checks found two save blockers; preserved baseline failures and local evidence. |
+| 2026-10-16 | Completed background workspace/WASM checks and actual PowerPoint ordinary-open, render and self-save controls; compatibility remains failed. |

@@ -1,7 +1,7 @@
 # DeckCraft roadmap
 
 > **Fork update, 2026-10-16:** SlideWarp-style navigation is gated on PPTX
-> compatibility. [Two save defects are reproduced](docs/PPTX-COMPATIBILITY-2026-10-16.md);
+> compatibility. [PowerPoint reopen and layout failures are reproduced](docs/PPTX-COMPATIBILITY-2026-10-16.md);
 > no product implementation or readiness re-scoring is included in this check.
 
 **Stage: alpha** · next: beta, ~20 points and ~120–210 h away
@@ -135,6 +135,7 @@ app's JSON control channel (`deckcraft --control PORT`).
 
 | Date | What landed |
 |---|---|
+| 2026-10-16 | Fork: actual PowerPoint tests reject both saved inputs; namespace isolation opens them but exposes changed word wrapping/overflow. PowerPoint self-save controls match on 6/6 and 166/166 slides. |
 | 2026-10-16 | Fork: isolated compatibility harness and evidence summary; inherited-style and modern-comment XML defects reproduced before navigation implementation. |
 | 2026-10-15 | CLI: .txt and .md export includes table cell text, which it used to skip silently (#814) |
 | 2026-10-15 | PDF export and rendering: `anchorCtr` centres the drawn text block — right-aligned text no longer ran past the box edge (#736) |
@@ -232,6 +233,7 @@ app's JSON control channel (`deckcraft --control PORT`).
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-16 | minor | Fork: add PowerPoint reopen/render evidence and completed background baseline results; no product changes. |
 | 2026-10-16 | minor | Fork-only compatibility gate and reproduction tooling; no product code or upstream readiness scores changed. |
 | 2026-10-14 | trivial | remote MCP checks reply IDs, envelopes and bounded newline framing (#718) |
 | 2026-10-14 | minor | Gray list markers on empty paragraphs while editing; caret keeps the list indent before typing |

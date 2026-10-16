@@ -1,7 +1,8 @@
 # Where DeckCraft falls short of PowerPoint
 
-> **Fork verification, 2026-10-16:** two additional save defects are reproduced
-> below. Upstream rankings and readiness estimates have not been recalculated.
+> **Fork verification, 2026-10-16:** save and rendering gaps are reproduced below,
+> including actual PowerPoint checks. Upstream rankings and readiness estimates
+> have not been recalculated.
 
 > **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-14 · **Change:** major (community PR wave 2026-10-14: soak tests, PPTX corpus, comment threads (#70), embedded fonts, SmartArt Text Pane, Animation Pane timeline, Hunspell spelling, thesaurus, AutoCorrect, 14 new dialogs, pen pressure and trackpad gestures; duplicated entries and headers folded; previous: minor, 3-D bevel, camera and face lighting rendered) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
 
@@ -65,14 +66,22 @@ revision history.
 
 ## File formats
 
-### Fork gate: inherited text defaults and malformed modern comments
+### Fork gate: saved-file rejection, layout loss and rendering differences
 
 - **Evidence:** [2026-10-16 compatibility checks](PPTX-COMPATIBILITY-2026-10-16.md),
   independently authored OOXML fixture plus a private representative deck.
 - **F-PPTX-01:** absent/empty imported text styles are replaced by defaults while
-  saving; three authored slides change text spacing/placement.
+  saving; three authored slides change text spacing/placement within DeckCraft.
+  PowerPoint does not reproduce all three changes, so its effective defaults must
+  inform a correction.
 - **F-PPTX-02:** modern comment output uses `a:` without declaring its namespace;
-  a namespace-aware XML parser rejects the saved part.
+  PowerPoint ordinary open rejects both saved test documents (`0x80070570`). A
+  namespace-only change in private diagnostic copies permits opening.
+- **F-PPTX-03:** namespace-corrected private saves still differ on 128/166 slides
+  in PowerPoint; inspected examples show word wrapping changes and table overflow.
+  PowerPoint's own save/reopen control is pixel-identical. Exact cause unisolated.
+- **F-PPTX-04:** direct DeckCraft/PowerPoint render comparison also shows meaningful
+  table-background, font-weight and gradient differences, beyond pixel counts.
 - **Impact:** blocks this fork's PPTX acceptance gate and subsequent navigation
   feature work. Existing DeckCraft tests passing is not a PowerPoint fidelity pass.
 
@@ -370,6 +379,7 @@ Detail in [localization-parity.md](localization-parity.md).
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-16 | minor | Fork: actual PowerPoint rejects saved files; namespace isolation exposes separate layout losses and rendering differences. |
 | 2026-10-16 | minor | Fork: record independently reproduced inherited-style and modern-comment save defects; product unchanged. |
 | 2026-10-14 | trivial | Fixed #718: remote MCP no longer accepts unrelated or buffered stale success; loopback regressions cover invalid envelopes, incomplete and oversized frames |
 | 2026-10-14 | minor | Community PR wave folded: one entry each for the soak tests (engine and UI), the PPTX corpus (seven owned corpus files), edit points / text warp / 3-D, proofing (Hunspell spelling, thesaurus, AutoCorrect), the smaller missing rows, dialogs (41 vs ~60; Print and Insert Object left) and pen/trackpad input; ranked rows 3, 4 and 10 de-duplicated (comment threads #70 and the pane timeline are done); the fixed command-palette entry (#79) removed |
