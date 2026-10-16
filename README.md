@@ -9,6 +9,11 @@
 
 <h1 align="center">DeckCraft</h1>
 
+> **Fork status (2026-10-16):** `misago09/deckcraft` is evaluating SlideWarp-style
+> navigation independently of the existing SlideWarp application. The required
+> [PPTX compatibility gate](docs/PPTX-COMPATIBILITY-2026-10-16.md) has two reproduced
+> save defects, so navigation implementation has not begun. This is not a release.
+
 <p align="center">
   <b>Presentations and slide shows; an open-source, clean-room reimplementation of Microsoft PowerPoint, rebuilt in pure Rust.</b>
 </p>

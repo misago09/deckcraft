@@ -1,5 +1,10 @@
 # File-format parity with PowerPoint
 
+> **Fork verification, 2026-10-16:** [independent compatibility checks](PPTX-COMPATIBILITY-2026-10-16.md)
+> found text-placement changes and malformed modern-comment XML on save. A private
+> 166-slide copy rendered consistently within DeckCraft, but PowerPoint reference
+> parity is unverified. These findings do not re-score upstream's estimates below.
+
 > **Last reviewed:** 2026-10-14 · **Last updated:** 2026-10-14 · **Change:** major (community PR wave 2026-10-14: seven owned PPTX corpus files, embedded fonts, EMF/WMF clip regions, threaded comments (#70), chart trendlines and workbooks (#335), SmartArt written as a diagram, tags and custom XML kept, picture export DPI; duplicated rows and headers folded; previous: trivial, lines in scaled groups, #233) · **Target:** Microsoft PowerPoint for Mac 16.113 (Microsoft 365)
 
 Every format PowerPoint reads or writes, DeckCraft's support, fidelity and how it is tested.
@@ -103,6 +108,7 @@ the round trip even though DeckCraft doesn't model it.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-16 | minor | Fork: add measured save blockers and separate self-render stability from unverified PowerPoint fidelity. |
 | 2026-10-14 | minor | Community PR wave folded: one row each for `.pptx` (seven owned corpus files), outline, 3-D models, embedded fonts, text, effects, 3-D (extrusion sides draw now), SmartArt (written as a diagram) and VBA (tags and custom XML are kept) |
 | 2026-10-12 | minor | SmartArt import lays each shape's text out on its `dsp:txXfrm` text rectangle instead of the shape box |
 | 2026-10-13 | minor | EMF/WMF rectangle clip regions limit later drawing; EMF+ records remain |
